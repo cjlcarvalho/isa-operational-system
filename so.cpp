@@ -12,7 +12,7 @@ int load_registers(vector<string>& registers){
 	return 1;
 }
 
-int load_memory(map <string, string>& memory){
+int load_memory(map<string, string>& memory){
 	string v("  ");
 	for(int i = 0; i<10; i++){
 		v[0] = i + 48;
@@ -61,7 +61,7 @@ int run_process(vector<string>& reg, map<string, string>& mem, string& start, st
     return 1;
 }
 
-int load_process(ifstream& file, vector<string>& reg, map <string, string>& mem){
+int load_process(ifstream& file, vector<string>& reg, map<string, string>& mem){
 	string line, end, val, ini, fim;
     detect_ini_fim(file, ini, fim);
 	// LER ARQUIVO E FAZER AS OPERAÇÕES DE ESCRITA NOS REGS E MEMÓRIA
@@ -84,7 +84,7 @@ int load_process(ifstream& file, vector<string>& reg, map <string, string>& mem)
 
 int main(){
 	vector<string> registers;
-	map <string, string> memory;
+	map<string, string> memory;
     load_registers(registers);
     load_memory(memory);
 	ifstream post ("instructions/post.txt");
@@ -94,7 +94,7 @@ int main(){
 
 	// ITERANDO PELO MAP
 	
-	for(map <string, string>::iterator it = memory.begin(); it != memory.end(); ++it)
+	for(map<string, string>::iterator it = memory.begin(); it != memory.end(); ++it)
 		cout << "Endereço " << it->first << ": " << it->second << endl;
 
 	// CARREGAR PERIFÉRICOS
@@ -110,6 +110,14 @@ int main(){
 	
 	// INICIA BASH
 	  // SETAR ALGUNS COMANDOS ( TALVEZ UNS 5 )
+        // HALT
+        // STATUS 
+            // REDE
+            // IMPRESSORA
+        // IMPRIMIR ARQUIVO
+        // CRIAR ARQUIVO
+        // LISTAR PASTA
+      // END
 	// END
 	
 	// REDE, IMPRESSORA, SCANNER, MULTIMIDIA
