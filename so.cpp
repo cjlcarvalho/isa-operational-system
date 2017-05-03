@@ -14,6 +14,7 @@ int load_registers(vector<string>& registers){
 
 int load_memory(map <string, string>& memory){
 	char v[2];
+	// ULTIMO CHAR ESTÁ COM LIXO
 	for(int i = 0; i<10, i++){
 		v[0] = i + 48;
 		for(int j = 0; j<10; j++){
@@ -68,6 +69,12 @@ int main(){
 	run_process(post, registers, memory);
 	ifstream bios ("bios.txt");
 	run_process(bios, registers, memory);
+
+	// ITERANDO PELO MAP
+	
+	for(map <string, string>::iterator it = memory.begin(); it != memory.end(); ++it)
+		cout << "Endereço " << it->first << ": " << it->second << endl;
+
 
 	// CARREGAR PERIFÉRICOS
 	  // VIDEO
