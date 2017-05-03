@@ -37,12 +37,33 @@ int load_memory(map <string, string>& memory){
             memory[v] = "";
         }
 	}
-
-  return 1;
+    return 1;
 }
 
-int run_process(ifstream& file, vector<string>& reg, map <string, string>& mem){
-	string line, end, val;
+int detect_ini_fim(ifstream& file, string& inicio, string& fim){
+    string line;
+    if(file.is_open()){
+        getline(file, line);
+        inicio = line.substr(0, 2);
+        while(getline(file, line)){}
+        fim = line.substr(0, 2);
+    }
+    file.clear;
+    file.seekg(0);
+    return 1;
+}
+
+int run_process(vector<string>& reg, map<string, string>& mem, string& start, string& end){
+    
+    // LER MEMÓRIA
+    // EXECUTAR INSTRUÇÕES
+
+    return 1;
+}
+
+int load_process(ifstream& file, vector<string>& reg, map <string, string>& mem){
+	string line, end, val, ini, fim;
+    detect_ini_fim(file, ini, fim);
 	// LER ARQUIVO E FAZER AS OPERAÇÕES DE ESCRITA NOS REGS E MEMÓRIA
 	if(file.is_open()){
 		while(getline(file, line)){
@@ -56,6 +77,8 @@ int run_process(ifstream& file, vector<string>& reg, map <string, string>& mem){
 		}
 		file.close();
     }
+    run_process(reg, mem, ini, fim);
+
 	return 1;
 }
 
@@ -65,9 +88,9 @@ int main(){
     load_registers(registers);
     load_memory(memory);
 	ifstream post ("instructions/post.txt");
-	run_process(post, registers, memory);
+	load_process(post, registers, memory);
 	ifstream bios ("instructions/bios.txt");
-	run_process(bios, registers, memory);
+	load_process(bios, registers, memory);
 
 	// ITERANDO PELO MAP
 	
