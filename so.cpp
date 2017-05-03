@@ -13,9 +13,8 @@ int load_registers(vector<string>& registers){
 }
 
 int load_memory(map <string, string>& memory){
-	char v[2];
-	// ULTIMO CHAR ESTÁ COM LIXO
-	for(int i = 0; i<10, i++){
+	string v("  ");
+	for(int i = 0; i<10; i++){
 		v[0] = i + 48;
 		for(int j = 0; j<10; j++){
 			v[1] = j + 48;
@@ -27,16 +26,16 @@ int load_memory(map <string, string>& memory){
 		}
 	}
 
-	for(int i = 'A'; j < 'G'; j++){
-	  v[0] = i;
-	  for(int j = 0; j < 10; j++){
-	  	v[1] = j + 48;
-	    memory[v] = "";
-	  }
-	  for(int j = 'A'; j < 'G'; j++){
-	  	v[1] = j;
-	  	memory[v] = "";
-	  }
+	for(int i = 'A'; i < 'G'; i++){
+        v[0] = i;
+        for(int j = 0; j < 10; j++){
+            v[1] = j + 48;
+            memory[v] = "";
+        }
+        for(int j = 'A'; j < 'G'; j++){
+            v[1] = j;
+            memory[v] = "";
+        }
 	}
 
   return 1;
@@ -56,25 +55,24 @@ int run_process(ifstream& file, vector<string>& reg, map <string, string>& mem){
 			mem[end] = val;
 		}
 		file.close();
-	}
+    }
 	return 1;
 }
 
 int main(){
 	vector<string> registers;
 	map <string, string> memory;
-  load_registers(registers);
-  load_memory(memory);
-	ifstream post ("post.txt");
+    load_registers(registers);
+    load_memory(memory);
+	ifstream post ("instructions/post.txt");
 	run_process(post, registers, memory);
-	ifstream bios ("bios.txt");
+	ifstream bios ("instructions/bios.txt");
 	run_process(bios, registers, memory);
 
 	// ITERANDO PELO MAP
 	
 	for(map <string, string>::iterator it = memory.begin(); it != memory.end(); ++it)
 		cout << "Endereço " << it->first << ": " << it->second << endl;
-
 
 	// CARREGAR PERIFÉRICOS
 	  // VIDEO
