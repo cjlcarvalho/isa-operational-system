@@ -56,7 +56,7 @@ void store(map<string, string>& registers, map<string, string>& memory, string i
 }
 
 void move(map<string, string>& registers, string inst1, auto& PC){
-    registers[inst1.substr(1, 1)] = registers[inst1.substr(1, 1)];
+    registers[inst1.substr(0, 1)] = registers[inst1.substr(1, 1)];
     ++PC;
 }
 
@@ -190,7 +190,6 @@ int run_process(map<string, string>& reg, map<string, string>& mem, string& star
             break;
         ++PC;
     }
-
     return 1;
 }
 
@@ -205,7 +204,7 @@ int start_bash(thread& rede, thread& scanner, thread& multimidia){
     cout << "ISA OPERATIONAL SYSTEM" << endl;
     map<string, string> files;
     while(true){
-        cout << "C:\\ "; 
+        cout << "C:\\\\ "; 
         cin >> op;
         if(!op.compare("HALT")){
             break;
@@ -230,7 +229,8 @@ int start_bash(thread& rede, thread& scanner, thread& multimidia){
         }
         else if(!op.compare("PRINT")){
             cout << "FILE: " << endl;
-            cin >> file_name;
+	    cin.ignore();
+            getline(cin, file_name);
             if(files.find(file_name) != files.end())
                 cout << "CONTENT: " << files.find(file_name)->second << endl;
             else
@@ -238,9 +238,10 @@ int start_bash(thread& rede, thread& scanner, thread& multimidia){
         }
         else if(!op.compare("NEW")){
             cout << "NEW FILE: " << endl;
-            cin >> file_name;
+	    cin.ignore();
+            getline(cin, file_name);
             cout << "CONTENT: ";
-            cin >> content;
+            getline(cin, content);
             files[file_name] = content;
         }
         else if(!op.compare("LIST")){
