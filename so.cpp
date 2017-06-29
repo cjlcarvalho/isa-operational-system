@@ -20,8 +20,8 @@ int bin_to_int(string bin){
         b1 = b - 48;
     else if(b >= 'A' && b <= 'F')
         b1 = b - 55;
-    a = a << 4;
-    return a + b;
+    a1 = a1 << 4;
+    return a1 + b1;
 }
 
 string int_to_bin(int a){
